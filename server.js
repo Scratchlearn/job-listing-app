@@ -52,6 +52,17 @@ app.get("/health", (req, res) => {
 })
 
 
+// Error handler middleware 
+function errorHandler( req, res, next) {
+   
+    res.status(500).json({
+      message: 'Something went wrong! Please try again later.',
+    });
+  }
+  
+  app.use(errorHandler);
+
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
     console.log(`server running at ${PORT}`);
